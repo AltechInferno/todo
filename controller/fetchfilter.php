@@ -33,6 +33,7 @@
         <tbody>
              <?php 
                     while($row = mysqli_fetch_array($query)){
+                        $main_id = $row['id']; 
                         echo ' <tr>
                                  <td>'.$row['title'].'</td>
                                  <td class="nowrap">'.$row['description'].'</td>
@@ -40,7 +41,14 @@
                                   <td>'.$row['status'].'</td>
                                   <td>'.$row['start_event'].'</td>
                                   <td>'.$row['end_event'].'</td>
-                                   <td> <button class="btn_1" >PDF</button> </td>
+                                   <td>
+                                   <select name="changestatus" id="changestatus" class="nice_Select2 wide" data-rowId="'.$main_id.'">
+                                   <option value="" disabled="" selected="">Change Status</option>
+                                   <option value="failed">Failed</option>
+                                   <option value="pending">Pending</option>
+                                   <option value="completed">Completed</option>
+                                 </select>
+                                   </td>
                                     </tr>';
                     }
             ?>

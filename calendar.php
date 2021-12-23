@@ -303,7 +303,7 @@ $query = $conn->query("SELECT * FROM events ORDER BY id");
                                            <td>'.$history['start_event'].'</td>
                                            <td>'.$history['end_event'].'</td>
                                            <td><select name="changestatus" id="changestatus" class="nice_Select2 wide" data-rowId="'.$main_id.'">
-                                                  <option value="" disabled="" selected="">Change Status</option>
+                                                  <option>Change Status</option>
                                                   <option value="failed">Failed</option>
                                                   <option value="pending">Pending</option>
                                                   <option value="completed">Completed</option>
@@ -388,7 +388,7 @@ $query = $conn->query("SELECT * FROM events ORDER BY id");
 
            },
             success:function(data){
-              $('#eventHistory').load(" #eventHistory > *");
+            $('.tablecontainer').html(data); 
 
             }
           });
@@ -409,6 +409,10 @@ $query = $conn->query("SELECT * FROM events ORDER BY id");
            url:"controller/functions.php", 
            type:"POST", 
            data:{value:value,rowid:rowid},
+           beforeSend:function(){
+             $(".tablecontainer").html("<span>Working...</span>"); 
+
+           },
             success:function(data){
               $(".tablecontainer").html(data); 
             }
